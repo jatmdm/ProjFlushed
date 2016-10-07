@@ -1,0 +1,7 @@
+Alright guys so here's how the repos gonna work.
+It was my fault it messed up before, but now that we've got a new one we've gotta make sure it's clean this time
+
+
+1. Work in your own scene. Merging scenes just doesn't work well.
+2. Only work in files, or copied files that you've created. Merging scripts is a pain.
+3. If you have questions, talk on the slack.
