@@ -6,7 +6,7 @@ using System.Collections.Generic;
 enum ConditionState { NotSeen = 0, NotChosen = 1, Chosen = 2};
 
 public class StoryManager : MonoBehaviour {
-	Dictionary<string, int> storyConditions;
+	public Dictionary<string, int> storyConditions;
 
 	// Use this for initialization
 	void Start () {
