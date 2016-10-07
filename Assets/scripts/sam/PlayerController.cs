@@ -7,12 +7,20 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed = 5f;
     public float friction = 5f;
     public float movingFriction = 5f;
+    public float stunPower = 4;
+
+    bool stunned;
 
     Rigidbody2D rigidBody;
+
+    StunController playerStun;
 
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
+        playerStun = GetComponent<StunController>();
+
+        stunned = false;
     }
 	
     void FixedUpdate() {
@@ -29,6 +37,16 @@ public class PlayerController : MonoBehaviour {
         }
         else {
             rigidBody.AddForce(-rigidBody.velocity.normalized * friction);
+        }
+
+        if (playerStun.isStunned() == true && stunned == false)
+        {
+            rigidBody.velocity = playerStun.StunVector() * stunPower;
+            stunned = true;
+        }
+        else if (playerStun.isStunned() == false && stunned == true)
+        {
+            stunned = false;
         }
     }
 
