@@ -31,19 +31,23 @@ public class StoryManager : MonoBehaviour {
 	}
 
 	void LoadStory(){
+        float startTime, endTime;
 		StreamReader reader = new StreamReader ("story.dat");
 		string line, key;
 		int value;
+        startTime = Time.timeSinceLevelLoad;
 		line = reader.ReadLine ();
 		int count = int.Parse(line);
-
+        
 		for (int i = 0; i < count; i++) {
 			line = reader.ReadLine ();
 			key = line.Split (new char[] {':'})[0];
 			value = int.Parse(line.Split (new char[] {':'})[1]);
 			storyConditions.Add (key, value);
 		}
-		printStory ();
+        endTime = Time.timeSinceLevelLoad;
+        Debug.Log("STORY LOADED IN " + (startTime - endTime) + "ms");
+		//printStory ();
 	}
 		
 	void SaveStory(){
