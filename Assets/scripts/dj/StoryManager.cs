@@ -10,11 +10,14 @@ public class StoryManager : MonoBehaviour {
 	public Dictionary<string, int> storyConditions;
 	public bool load;
     public bool save;
+    public bool change;
+    public string changeString;
 
 	// Use this for initialization
 	void Start () {
 		load = false;
         save = false;
+        change = false;
 		storyConditions = new Dictionary<string, int> ();
 	}
 	
@@ -27,19 +30,12 @@ public class StoryManager : MonoBehaviour {
         if (save)
         {
             save = false;
-
-            //test whether or not you can change something and load it.
-            //I believe this is the only way to manipulate values in a Dictionary, but I will have to look some stuff up later.
-            foreach(KeyValuePair<string, int> kv in storyConditions)
-            {
-                string key;
-                int value = 0;
-
-                key = kv.Key;
-                storyConditions.Remove(kv.Key);
-                storyConditions.Add(key, value);
-            }
             SaveStory();
+        }
+        if (change)
+        {
+            change = false;
+            storyConditions[changeString] = (int)ConditionState.NotSeen;
         }
 	}
 
@@ -55,6 +51,7 @@ public class StoryManager : MonoBehaviour {
 		string line, key;
 		int value;
         startTime = Time.timeSinceLevelLoad;
+        storyConditions = new Dictionary<string, int>();
 		line = reader.ReadLine ();
 		int count = int.Parse(line);
         
@@ -75,12 +72,13 @@ public class StoryManager : MonoBehaviour {
 
 		//Top of the file is "metadata"
 		writer.WriteLine(storyConditions.Count);
-		foreach (KeyValuePair<string, int> pair in storyConditions){
+		foreach (KeyValuePair<string, int> kv in storyConditions){
 			//Put each condition as CONDITION:STATE
 			string line = "";
-			line = pair.Key + ":" + pair.Value;
+			line = kv.Key + ":" + kv.Value;
 			writer.WriteLine (line);
 		}
         writer.Close();
+        Debug.Log("Successfully saved.");
 	}
 }
