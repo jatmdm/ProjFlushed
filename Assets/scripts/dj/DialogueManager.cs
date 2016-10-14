@@ -10,12 +10,21 @@ public class DialogueManager : MonoBehaviour {
 
 	public Image textboxContainer;
 	public Text textbox;
+    public Button button;
+    public Text buttonText;
 
-	List<string> dialogueQueue;
+    List<string> dialogueQueue;
 	public int prevQueuePosition;
 	public int queuePosition;
 
-	void parseDialogue(string dialogue){
+    // - Sam 10/14/16
+    public bool showDialogue;
+    Color showTextBox;
+    Color showButton;
+
+    // - Sam 10/14/16
+
+    void parseDialogue(string dialogue){
 		string[] fullCommand;
 		fullCommand = dialogue.Split (new char[] { ':' });
 		string command = fullCommand[0];
@@ -35,6 +44,11 @@ public class DialogueManager : MonoBehaviour {
 	void Start () {
 		dialogueQueue = new List<string> ();
 		prevQueuePosition = -1;
+        // Sam 10/14/16
+        showDialogue = false;
+        showTextBox = textboxContainer.color;
+        showButton = button.image.color;
+        // Sam 10/14/16
 	}
 
 	void Update(){
@@ -43,7 +57,9 @@ public class DialogueManager : MonoBehaviour {
 			StartDialogue("memes.txt");
 			parseDialogue (dialogueQueue [queuePosition]);
 		}
-	}
+        ToggleDialogue(showDialogue);
+
+    }
 
 	public void StartDialogue(string path){
 		LoadDialogue (path);
@@ -60,9 +76,24 @@ public class DialogueManager : MonoBehaviour {
 		parseDialogue (dialogueQueue[queuePosition]);
 	}
 
+    public void ToggleDialogue(bool toggle) {
+        Color hideUI = new Color(0, 0, 0, 0);
+        if (!showDialogue)
+        {
+            textboxContainer.GetComponent<Image>().color = hideUI;
+            button.GetComponent<Button>().image.color = hideUI;
+        }
+        else
+        {
+            textboxContainer.GetComponent<Image>().color = showTextBox;
+            button.GetComponent<Button>().image.color = showButton;
+        }
+    }
+
 	public void QuitDialogue(){
-		textboxContainer.enabled = false;
+        showDialogue = false;
 		textbox.enabled = false;
+        buttonText.enabled = false;
 	}
 
 	void LoadDialogue(string path){
