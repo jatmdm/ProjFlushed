@@ -13,8 +13,11 @@ public class StoryManager : MonoBehaviour {
     public bool change;
     public string changeString;
 
+    public bool debug;
+
 	// Use this for initialization
 	void Start () {
+        debug = true; //Rememebr to change before release.
 		load = false;
         save = false;
         change = false;
@@ -39,12 +42,31 @@ public class StoryManager : MonoBehaviour {
         }
 	}
 
+    public void ChangeConditionState(string key, int value)
+    {
+        if (!storyConditions.ContainsKey(key))
+        {
+            Debug.LogError("Error when trying to change condition state. Key: " + key + " does not exist.");
+        }
+        else
+        {
+            storyConditions[key] = value;
+            
+        }
+    }
+
+    public List<KeyValuePair<string, int>> ConditionCollection(string list)
+    {
+        List<KeyValuePair<string, int>> collection = new List<KeyValuePair<string, int>>();
+        
+        return collection;
+    }
+
 	void printStory(){
 		foreach (KeyValuePair<string, int> kv in storyConditions) {
 			Debug.Log (kv.Key + ":" + kv.Value);
 		}
 	}
-
 	void LoadStory(){
         float startTime, endTime;
 		StreamReader reader = new StreamReader ("story.dat");
@@ -63,10 +85,9 @@ public class StoryManager : MonoBehaviour {
 		}
         reader.Close();
         endTime = Time.timeSinceLevelLoad;
-        Debug.Log("STORY LOADED IN " + (startTime - endTime) + "ms");
+        if(debug) Debug.Log("STORY LOADED IN " + (startTime - endTime) + "ms");
 		printStory ();
 	}
-		
 	void SaveStory(){
 		StreamWriter writer = new StreamWriter ("story.dat");
 
@@ -76,6 +97,7 @@ public class StoryManager : MonoBehaviour {
 			//Put each condition as CONDITION:STATE
 			string line = "";
 			line = kv.Key + ":" + kv.Value;
+            if (debug) Debug.Log(line);
 			writer.WriteLine (line);
 		}
         writer.Close();
