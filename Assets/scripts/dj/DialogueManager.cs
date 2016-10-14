@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour {
     public Button button;
     public Text buttonText;
 
+    Rigidbody2D rigidBody;
+
     List<string> dialogueQueue;
 	public int prevQueuePosition;
 	public int queuePosition;
@@ -80,6 +82,7 @@ public class DialogueManager : MonoBehaviour {
         Color hideUI = new Color(0, 0, 0, 0);
         if (!showDialogue)
         {
+            
             textboxContainer.GetComponent<Image>().color = hideUI;
             button.GetComponent<Button>().image.color = hideUI;
         }
