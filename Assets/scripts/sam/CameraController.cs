@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
+
     public Transform target;
     public float damping = 1;
     public float lookAheadFactor = 3;
@@ -28,6 +29,7 @@ public class CameraController : MonoBehaviour {
     {
         // only update lookahead pos if accelerating or changed direction
         float xMoveDelta = (target.position - m_LastTargetPosition).x;
+        //Debug.Log(xMoveDelta);
 
         bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
 
@@ -39,6 +41,8 @@ public class CameraController : MonoBehaviour {
         {
             m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
         }
+
+        //Debug.Log(m_LookAheadPos);
 
         Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward * m_OffsetZ;
         Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
