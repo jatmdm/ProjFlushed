@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 512371e415e35b94b9c222fabddc1e08
 timeCreated: 1475862566
+=======
+guid: 4f47d92ceb2325c47b07a847621b585d
+timeCreated: 1476084254
+>>>>>>> GameManager
 licenseType: Free
 DefaultImporter:
   userData: 

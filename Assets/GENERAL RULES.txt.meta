@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d94ce906f99518746ad743dff4a2e61b
 timeCreated: 1475862571
+=======
+guid: a92e4921a86c0db429d103af869d35c2
+timeCreated: 1476084257
+>>>>>>> GameManager
 licenseType: Free
 TextScriptImporter:
   userData: 

@@ -1,0 +1,7 @@
+5
+{W}:Hello!
+{W}:What's your name?
+{W}:My name is Mememan.
+{W}: (owo)
+{W}: (owo)\n(owo)
+{M}:Happy
