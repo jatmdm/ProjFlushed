@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-enum ConditionState { NotSeen = 0, NotChosen = 1, Chosen = 2};
+public enum ConditionState { NotSeen = 0, NotChosen = 1, Chosen = 2};
 
 public class StoryManager : MonoBehaviour {
 	public Dictionary<string, int> storyConditions;
@@ -38,7 +38,7 @@ public class StoryManager : MonoBehaviour {
         if (change)
         {
             change = false;
-            storyConditions[changeString] = (int)ConditionState.NotSeen;
+            storyConditions[changeString] = 0;
         }
 	}
 
