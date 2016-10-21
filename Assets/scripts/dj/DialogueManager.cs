@@ -50,6 +50,9 @@ public class DialogueManager : MonoBehaviour {
 		Reset (); //initializes everything
 	}
 
+	/// <summary>
+	/// Resets dialogueQueue and tags. Use sparingly!
+	/// </summary>
 	void Reset() {
 		dialogueQueue = new List<string> ();
 		tags = new Dictionary<string, int> ();
@@ -58,6 +61,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	void Update(){
+		//Test Button that starts dialogue.
 		if (testDialogue) {
 			testDialogue = false;
 			StartDialogue("memes.txt");
