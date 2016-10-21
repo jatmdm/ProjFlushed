@@ -5,3 +5,11 @@ It was my fault it messed up before, but now that we've got a new one we've gott
 1. Work in your own scene. Merging scenes just doesn't work well.
 2. Only work in files, or copied files that you've created. Merging scripts is a pain.
 3. If you have questions, talk on the slack.
+
+
+What we need done:
+-Story manager: DJ
+-Dialogue manager: DJ
+-Overworld movement: Sam
+-Animations & such: Matt
+-NPC Dialogue Switching/Conditions: Issac

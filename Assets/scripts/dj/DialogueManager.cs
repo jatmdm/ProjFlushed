@@ -12,29 +12,49 @@ public class DialogueManager : MonoBehaviour {
 	public Text textbox;
 
 	List<string> dialogueQueue;
+	Dictionary<string, int> tags;
 	public int prevQueuePosition;
 	public int queuePosition;
 
 	void parseDialogue(string dialogue){
+		//Comment code
+		if(dialogue.StartsWith("--")) AdvanceDialogue();
+
 		string[] fullCommand;
 		fullCommand = dialogue.Split (new char[] { ':' });
 		string command = fullCommand[0];
 		string parameter = fullCommand [1];
 
-		if(command.Equals("{W}")){
+		if (command.Equals ("Write") || command.Equals ("write")) {
 			//Eventually we will add a reader that will read in over a specified time so it will look nicer.
 			textbox.text = parameter;
-		}
-		if (command.Equals ("{M}")) {
+		} else if (command.Equals ("Mood") || command.Equals ("mood")) {
 			//Change Character mood to parameter
 
+		} else if (command.Equals ("Animate") || command.Equals ("animate")) {
+			//Do the animation in the parameter
+		} else if (command.Equals ("Goto") || command.Equals ("goto")) {
+			//Goto line at parameter (the tag is the parameter)
+			AdvanceDialogue(parameter);
+		} else if (command.Equals ("Choice") || command.Equals ("choice")) {
+			//Need to think about this infrastructure.
+
+		} else if (command.Equals ("Tag") || command.Equals ("tag")) {
+			//Skip
+			AdvanceDialogue();
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
+		Reset (); //initializes everything
+	}
+
+	void Reset() {
 		dialogueQueue = new List<string> ();
+		tags = new Dictionary<string, int> ();
 		prevQueuePosition = -1;
+		queuePosition = 0;
 	}
 
 	void Update(){
@@ -60,21 +80,42 @@ public class DialogueManager : MonoBehaviour {
 		parseDialogue (dialogueQueue[queuePosition]);
 	}
 
+	public void AdvanceDialogue(string tag){
+		prevQueuePosition = queuePosition;
+		queuePosition = tags [tag];
+		parseDialogue (dialogueQueue [queuePosition]);
+	}
+
 	public void QuitDialogue(){
 		textboxContainer.enabled = false;
 		textbox.enabled = false;
+		Start ();
 	}
 
 	void LoadDialogue(string path){
 		queuePosition = 0;
 		prevQueuePosition = -1;
 		StreamReader reader = new StreamReader (path);
-		int lineCount = int.Parse(reader.ReadLine ());
-		for (int i = 0; i < lineCount; i++) {
+//		int lineCount = int.Parse(reader.ReadLine ());
+//		for (int i = 0; i < lineCount; i++) {
+//			string line = reader.ReadLine ();
+//			dialogueQueue.Add (line);
+//			if (debug)
+//				Debug.Log ("Line " + i + ": " + line);
+//		}
+//
+		int lineNum = 0;
+		while (reader.Peek () > -1) {
 			string line = reader.ReadLine ();
+			string[] fullCommand;
+			fullCommand = line.Split (new char[] { ':' });
+			string command = fullCommand[0];
+			string parameter = fullCommand [1];
+			if (command == "Tag" || command == "tag") {
+				tags.Add (parameter, lineNum);
+			}
 			dialogueQueue.Add (line);
-			if (debug)
-				Debug.Log ("Line " + i + ": " + line);
+			lineNum++;
 		}
 		reader.Close ();
 	}
