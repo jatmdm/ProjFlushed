@@ -16,6 +16,10 @@ public class DialogueManager : MonoBehaviour {
 	public int prevQueuePosition;
 	public int queuePosition;
 
+	/// <summary>
+	/// Parses the dialogue.
+	/// </summary>
+	/// <param name="dialogue">Dialogue.</param>
 	void parseDialogue(string dialogue){
 		//Comment code
 		if(dialogue.StartsWith("--")) AdvanceDialogue();
@@ -51,7 +55,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Resets dialogueQueue and tags. Use sparingly!
+	/// Reset this instance.
 	/// </summary>
 	void Reset() {
 		dialogueQueue = new List<string> ();
@@ -69,11 +73,18 @@ public class DialogueManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Starts the dialogue.
+	/// </summary>
+	/// <param name="path">Path.</param>
 	public void StartDialogue(string path){
 		LoadDialogue (path);
 		textboxContainer.enabled = true;
 	}
 
+	/// <summary>
+	/// Advances the dialogue.
+	/// </summary>
 	public void AdvanceDialogue (){
 		if (queuePosition >= dialogueQueue.Count - 1) {
 			QuitDialogue ();
@@ -84,18 +95,28 @@ public class DialogueManager : MonoBehaviour {
 		parseDialogue (dialogueQueue[queuePosition]);
 	}
 
+	/// <summary>
+	/// Advances the dialogue.
+	/// </summary>
+	/// <param name="tag">Tag.</param>
 	public void AdvanceDialogue(string tag){
 		prevQueuePosition = queuePosition;
 		queuePosition = tags [tag];
 		parseDialogue (dialogueQueue [queuePosition]);
 	}
-
+	/// <summary>
+	/// Quits the dialogue.
+	/// </summary>
 	public void QuitDialogue(){
 		textboxContainer.enabled = false;
 		textbox.enabled = false;
 		Start ();
 	}
 
+	/// <summary>
+	/// Loads the dialogue.
+	/// </summary>
+	/// <param name="path">Path.</param>
 	void LoadDialogue(string path){
 		queuePosition = 0;
 		prevQueuePosition = -1;
