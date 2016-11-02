@@ -55,6 +55,7 @@ public class MoveAndJumpTest : MonoBehaviour {
 			float rotation = (deltaTheta > Mathf.PI / 2) ? (turnSpeed * Mathf.PI / 2) : (deltaTheta * turnSpeed);
 			rotation *= Time.deltaTime;
 
+
 			// Turn clockwise if the difference is greater than pi, otherwise rotate counter clockwise
 			if (deltaTheta >= Mathf.PI && deltaTheta < 2 * Mathf.PI) {
 				rb.velocity = Quaternion.Euler (0, 0, rotation) * rb.velocity;
@@ -71,6 +72,7 @@ public class MoveAndJumpTest : MonoBehaviour {
 			if (rb.velocity.magnitude == 0) {
 				
 				rb.velocity = Quaternion.Euler (0, 0, Mathf.Rad2Deg * inputTheta) * Vector2.right * acceleration * Time.deltaTime;
+				//Debug.Log (Mathf.Rad2Deg * inputTheta);
 			}
 		}
 
@@ -83,7 +85,6 @@ public class MoveAndJumpTest : MonoBehaviour {
 
 		// If the brake key is down, brake!
 		if (brake) {
-			Debug.Log ("Break!");
 			rb.velocity -= rb.velocity.normalized * brakePower * rb.velocity.magnitude * Time.deltaTime;
 		}
 
@@ -97,7 +98,7 @@ public class MoveAndJumpTest : MonoBehaviour {
 			stunned = false;
 		}
 
-		Debug.Log(" Velocity: " + rb.velocity);
+		//Debug.Log(" Velocity: " + rb.velocity);
 	}
 
 	// Update is called once per frame
