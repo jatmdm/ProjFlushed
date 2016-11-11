@@ -6,17 +6,18 @@ public class ColorManager : MonoBehaviour {
     public StateManager stateManager;
     public SpriteRenderer spriteRenderer;
     public int lastState;
+    public string stateName;
 
 	// Use this for initialization
 	void Start () {
         stateManager = GetComponentInChildren<StateManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        lastState = stateManager.getState();
+        lastState = stateManager.getState(stateName);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        int newState = stateManager.getState();
+        int newState = stateManager.getState(stateName);
         if (newState != lastState)
         {
             changeColor(newState);

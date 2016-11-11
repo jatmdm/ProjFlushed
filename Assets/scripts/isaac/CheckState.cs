@@ -5,6 +5,7 @@ public class CheckState : MonoBehaviour {
 
     public GameObject npc;
     private StateManager stateManager;
+    public string stateName;
 
 	// Use this for initialization
 	void Start ()
@@ -21,7 +22,7 @@ public class CheckState : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            string msg = stateManager.name + " has state " + stateManager.getState();
+            string msg = "The state of " + stateName + " has state " + stateManager.getState(stateName);
             Debug.Log(msg);
         }
     }
