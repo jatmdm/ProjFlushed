@@ -17,6 +17,10 @@ public class DialogueManager : MonoBehaviour {
 	private Text textBoxPrefab;
 	[SerializeField]
 	private Button choiceButtonPrefab;
+	[SerializeField]
+	private Image choiceBoxPrefab;
+	[SerializeField]
+	private Image dialogueBoxPrefab;
 
 
 	//Debug Bools
@@ -38,16 +42,23 @@ public class DialogueManager : MonoBehaviour {
 
 	void RefreshView () {
 		DestroyChildren ();
+
+		Image dialogueBox = CreateDialogueBox ();
+
 		Text content = null;
 		while (story.canContinue) {
 			string text = story.Continue ().Trim ();
-			content = CreateContentView (text);
+			content = CreateContentView (text, dialogueBox.transform);
 		}
+
+		Image choiceContainer = CreateChoiceBox ();
+
+		Transform parent = choiceContainer.transform;
 
 		if (story.currentChoices.Count > 0) {
 			for (int i = 0; i < story.currentChoices.Count; i++) {
 				Choice choice = story.currentChoices [i];
-				Button button = CreateChoiceButton (choice.text.Trim (), content.transform);
+				Button button = CreateChoiceButton (choice.text.Trim (), parent);
 				button.onClick.AddListener (
 					delegate {
 						OnClickChoiceButton (choice);
@@ -55,7 +66,7 @@ public class DialogueManager : MonoBehaviour {
 				);
 			}
 		} else {
-			Button choice = CreateChoiceButton ("....[continue]", content.transform);
+			Button choice = CreateChoiceButton ("....[continue]", parent);
 			choice.onClick.AddListener (
 				delegate {
 					EndDialogue();
@@ -69,11 +80,26 @@ public class DialogueManager : MonoBehaviour {
 		RefreshView ();
 	}
 
-	Text CreateContentView(string text) {
-		Text storyText = Instantiate (textBoxPrefab) as Text;
-		storyText.text = text;
-		storyText.transform.SetParent (canvas.transform, false);
+	Image CreateChoiceBox(){
+		Image choiceImage = Instantiate (choiceBoxPrefab) as Image;
+		choiceImage.transform.SetParent (canvas.transform, false);
+		return choiceImage;
+	}
 
+	Image CreateDialogueBox(){
+		Image dialogueBoxImage = Instantiate (dialogueBoxPrefab) as Image;
+		dialogueBoxImage.transform.SetParent (canvas.transform, false);
+		return dialogueBoxImage;
+	}
+
+	Text CreateContentView(string text, Transform parent) {
+		Text storyText = Instantiate (textBoxPrefab) as Text;
+		storyText.transform.SetParent (parent, false);
+//		storyText.gameObject.GetComponent<TextPrinter>().LoadText (text);
+		storyText.text = text;
+
+
+//		storyText.gameObject.GetComponent<TextPrinter> ().StartRead ();
 		return storyText;
 	}
 
