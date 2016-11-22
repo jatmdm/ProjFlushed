@@ -8,12 +8,16 @@ public class PlayerController : MonoBehaviour {
     public float friction = 5f;
     public float movingFriction = 5f;
     public float stunPower = 4;
+	public bool flipIt;
+
+	bool right;
 
     bool stunned;
 
     Rigidbody2D rigidBody;
 
     StunController playerStun;
+	SpriteRenderer sprite;
 
     // Use this for initialization
     void Start () {
@@ -21,6 +25,8 @@ public class PlayerController : MonoBehaviour {
         playerStun = GetComponent<StunController>();
 
         stunned = false;
+		sprite = GetComponent<SpriteRenderer> ();
+		right = false;
     }
 	
     void FixedUpdate() {
@@ -29,6 +35,11 @@ public class PlayerController : MonoBehaviour {
         bool noMove = Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0;
 
         Vector2 acceleration = new Vector2(hMove, vMove).normalized * moveAmount;
+		if (acceleration.x > 0) {
+			right = true;
+		} else if (acceleration.x < 0) {
+			right = false;
+		}
 
         if (!noMove) {
             rigidBody.AddForce(acceleration);
@@ -52,6 +63,8 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+		if (flipIt) {
+			sprite.flipX = right;
+		}
 	}
 }
