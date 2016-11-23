@@ -19,7 +19,7 @@ public class batSwing : MonoBehaviour {
 
 		swingSpeed = 300;
 		maxAngle = 80;
-		startingAngle = -90;
+		startingAngle = -120;
 		inheritAngle = rb.rotation;
 
 		doIt = false;
@@ -47,5 +47,7 @@ public class batSwing : MonoBehaviour {
 				Destroy (gameObject);
 			}
 		}
+
+		rb.position = transform.parent.gameObject.GetComponent<Rigidbody2D> ().position;
 	}
 }

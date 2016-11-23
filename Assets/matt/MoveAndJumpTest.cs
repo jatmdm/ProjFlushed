@@ -12,6 +12,8 @@ public class MoveAndJumpTest : MonoBehaviour {
 	public float brakePower = .5f;
 	public float stunPower = 4;
 
+	public bool rotate = true;
+
 	Rigidbody2D rb;
 	StunController playerStun;
 
@@ -82,12 +84,12 @@ public class MoveAndJumpTest : MonoBehaviour {
 		rb.velocity -= rb.velocity.normalized * relativeFriction * rb.velocity.magnitude * Time.deltaTime;
 
 		// If the brake key is down, brake!
-		if (brake) {
+		/*if (brake) {
 			Debug.Log ("Break!");
 			rb.velocity -= rb.velocity.normalized * brakePower * rb.velocity.magnitude * Time.deltaTime;
-		}
+		}*/
 
-		if (playerStun.isStunned() == true && stunned == false)
+		/*if (playerStun.isStunned() == true && stunned == false)
 		{
 			rb.velocity = playerStun.StunVector() * stunPower;
 			stunned = true;
@@ -95,9 +97,14 @@ public class MoveAndJumpTest : MonoBehaviour {
 		else if (playerStun.isStunned() == false && stunned == true)
 		{
 			stunned = false;
-		}
+		}*/
 
-		Debug.Log(" Velocity: " + rb.velocity);
+		// Rotate object depending upon velocity
+		if (rotate) {
+			if (rb.velocity.magnitude != 0) {
+				rb.rotation = Mathf.Atan2 (rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+			}
+		}
 	}
 
 	// Update is called once per frame
