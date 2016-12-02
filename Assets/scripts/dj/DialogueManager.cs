@@ -22,6 +22,9 @@ public class DialogueManager : MonoBehaviour {
 	[SerializeField]
 	private Image dialogueBoxPrefab;
 
+	[SerializeField]
+	private Image dialogueCharacterNamePrefab;
+
 
 	//Debug Bools
 	public bool start;
@@ -96,7 +99,15 @@ public class DialogueManager : MonoBehaviour {
 		Text storyText = Instantiate (textBoxPrefab) as Text;
 		storyText.transform.SetParent (parent, false);
 //		storyText.gameObject.GetComponent<TextPrinter>().LoadText (text);
-		storyText.text = text;
+		DialogueData data = DialogueParser.Instance.Parse(text);
+		storyText.text = data.Text;
+
+		if (data.CharacterName != "") {
+			Image charName = Instantiate (dialogueCharacterNamePrefab) as Image;
+			charName.transform.SetParent (canvas.transform, false);
+			Text nameBox = charName.GetComponentInChildren<Text> ();
+			nameBox.text = data.CharacterName;
+		}
 
 
 //		storyText.gameObject.GetComponent<TextPrinter> ().StartRead ();
@@ -107,8 +118,11 @@ public class DialogueManager : MonoBehaviour {
 		Button choice = Instantiate (choiceButtonPrefab) as Button;
 		choice.transform.SetParent (parent, false);
 
+		DialogueData data = new DialogueData ();
+		data = DialogueParser.Instance.Parse (text);
+
 		Text choiceText = choice.GetComponentInChildren<Text> ();
-		choiceText.text = text;
+		choiceText.text = data.Text;
 
 		HorizontalLayoutGroup layoutGroup = choice.GetComponent <HorizontalLayoutGroup> ();
 		layoutGroup.childForceExpandHeight = false;

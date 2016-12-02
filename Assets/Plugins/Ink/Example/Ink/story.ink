@@ -1,7 +1,10 @@
-- I looked at Monsieur Fogg 
-*   ... and I could contain myself no longer.
-    'What is the purpose of our journey, Monsieur?'
-    'A wager,' he replied.
+- ::I looked at Monsieur Fogg 
+*   Meme:0,0,0:... and I could contain myself no longer.
+    * ::continue
+    Meme:0,0,0:'What is the purpose of our journey, Monsieur?'
+    * ::continue
+    Fogg:0,0,2:'A wager,' he replied.
+    * ::continue
     * *     'A wager!'[] I returned.
             He nodded. 
             * * *   'But surely that is foolishness!'
