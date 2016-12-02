@@ -28,17 +28,15 @@ public class QueueManager : MonoBehaviour {
         npcAgent.stoppingDistance = 0f;
 
         if(npcCount == 0) {
-            npcController.IsFollowingPoint = true;
-            npcController.followPoint = transform.position;
+            npcController.SetNPCDesitnation(transform.position);
             npcQueue.AddLast(npc);
         }
         else {
             Vector3 npcQueuePoint;
             float npcBetweenDistance = npcSpacing * npcCount;
             npcQueuePoint = transform.position + (new Vector3(npcBetweenDistance * Mathf.Cos(queueDirection * Mathf.Deg2Rad), 0, npcBetweenDistance * Mathf.Sin(queueDirection * Mathf.Deg2Rad)));
-            npcController.IsFollowingPoint = true;
+            npcController.SetNPCDesitnation(npcQueuePoint);
 
-            npcController.followPoint = npcQueuePoint;
             npcQueue.AddLast(npc);
         }
     }
@@ -55,7 +53,7 @@ public class QueueManager : MonoBehaviour {
             NavMeshAgent npcAgent = npcUpNext.Value.GetComponent<NavMeshAgent>();
 
             nextPoint = npcController.followPoint;
-            npcController.followPoint = prevPoint;
+            npcController.SetNPCDesitnation(prevPoint);
             prevPoint = nextPoint;
 
             npcUpNext = npcUpNext.Next;

@@ -6,16 +6,23 @@ public class TestQueueScript : MonoBehaviour {
     public bool enqueue;
     public bool dequeue;
     public GameObject queue;
+    public GameObject path;
     QueueManager queueManager;
+    NPCPathManager pathManager;
     public GameObject[] npcs;
     public GameObject player;
+    public GameObject pathTest;
 
     int i;
 	// Use this for initialization
 	void Start () {
         enqueue = false;
         queueManager = queue.GetComponent<QueueManager>();
+        pathManager = path.GetComponent<NPCPathManager>();
         player = GameObject.Find("Player");
+        pathTest = GameObject.Find("NPC (Path) (6)");
+        pathManager.npcSetPath(pathTest);
+
         i = 0;
 	}
 	
