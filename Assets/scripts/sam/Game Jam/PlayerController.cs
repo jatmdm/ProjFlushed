@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
             rigidBody.AddForce(-rigidBody.velocity.normalized * friction);
         }
 
-        if (playerStun.isStunned() == true && stunned == false)
+        /*if (playerStun.isStunned() == true && stunned == false)
         {
             rigidBody.velocity = playerStun.StunVector() * stunPower;
             stunned = true;
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
         else if (playerStun.isStunned() == false && stunned == true)
         {
             stunned = false;
-        }
+        }*/
     }
 
 	// Update is called once per frame
