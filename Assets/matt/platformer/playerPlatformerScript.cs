@@ -13,7 +13,7 @@ public class playerPlatformerScript : MonoBehaviour {
 		float halfHeight = colliderExtents.y;
 		Vector2 boxSize = new Vector2 (colliderExtents.x * 1.2f, .18f);
 
-		RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.down,halfHeight + 0.1f);
+		RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.down, halfHeight + 0.1f);
 
 		if (hit.collider && hit.collider.gameObject.tag == "Solid") {
 			return true;
