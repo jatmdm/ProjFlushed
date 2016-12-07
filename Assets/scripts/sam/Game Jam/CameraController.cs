@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
 
-    public Transform target;
+    Transform target;
     public float damping = 1;
     public float lookAheadFactor = 3;
     public float lookAheadReturnSpeed = 0.5f;
@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour {
     // Use this for initialization
     private void Start()
     {
+		target = GameObject.FindWithTag ("Player").transform;
         m_LastTargetPosition = target.position;
         m_OffsetZ = (transform.position - target.position).z;
         transform.parent = null;
@@ -27,6 +28,12 @@ public class CameraController : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
+		if (!target) {
+			target = GameObject.FindWithTag ("Player").transform;
+			m_LastTargetPosition = target.position;
+			m_OffsetZ = (transform.position - target.position).z;
+		}
+
         // only update lookahead pos if accelerating or changed direction
         float xMoveDelta = (target.position - m_LastTargetPosition).x;
         //Debug.Log(xMoveDelta);

@@ -11,7 +11,7 @@ public class playerPlatformerScript : MonoBehaviour {
 
 	public bool isGrounded() {
 		float halfHeight = colliderExtents.y;
-		Vector2 boxSize = new Vector2 (colliderExtents.x, .1f);
+		Vector2 boxSize = new Vector2 (colliderExtents.x * 1.2f, .18f);
 
 		RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.down,halfHeight + 0.1f);
 
