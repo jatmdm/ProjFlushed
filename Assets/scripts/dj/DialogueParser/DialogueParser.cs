@@ -69,7 +69,7 @@ public class DialogueParser {
 
 		string[] colorTemp;
 		int r, g, b;
-		colorTemp = splitData [1].Split (',');
+//		colorTemp = splitData [1].Split (',');
 //		r = int .Parse(colorTemp [0]);
 //		g = int.Parse(colorTemp [1]);
 //		b = int.Parse(colorTemp [2]);
