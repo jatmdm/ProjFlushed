@@ -47,7 +47,5 @@ public class playerPlatformerMovementScript : MonoBehaviour {
 		if (playerState.isGrounded() && jumpTimer > 0 && Input.GetButtonUp ("Fire1")) {
 			jumpTimer = 0;
 		}
-
-		Debug.Log (jumpTimer);
 	}
 }

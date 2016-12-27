@@ -30,7 +30,7 @@ public class TestQueueScript : MonoBehaviour {
             GameObject npcExiting = queueManager.npcDequeue();
             Debug.Log(npcExiting.name);
             npcExiting.GetComponent<MainNPCController>().followPoint = player.transform.position;
-            npcExiting.GetComponent<NavMeshAgent>().stoppingDistance = 3f;
+            npcExiting.GetComponent<UnityEngine.AI.NavMeshAgent>().stoppingDistance = 3f;
 
             dequeue = false;
         }

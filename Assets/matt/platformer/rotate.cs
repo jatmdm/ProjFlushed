@@ -20,7 +20,5 @@ public class rotate : MonoBehaviour {
 		Vector3 rotation = new Vector3 (0, 0, amplitude * omega * Mathf.Cos (omega * timer));
 
 		transform.Rotate(rotation);
-
-		Debug.Log (rotation);
 	}
 }

@@ -101,6 +101,6 @@ public class StoryManager : MonoBehaviour {
 			writer.WriteLine (line);
 		}
         writer.Close();
-        Debug.Log("Successfully saved.");
+        Debug.Log("Successfully saved story.");
 	}
 }

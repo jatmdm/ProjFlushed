@@ -29,6 +29,7 @@ public class StunController : MonoBehaviour {
     {
         timer = stunLength;
         stunVector = stunDirection.normalized;
+		GetComponent<AudioSource>().Play ();
     }
 
     public bool isStunned()

@@ -1,7 +1,15 @@
-5
-{W}:Hello!
-{W}:What's your name?
-{W}:My name is Mememan.
-{W}: (owo)
-{W}: (owo)\n(owo)
-{M}:Happy
+Write:Hello!
+Write:What's your name?
+Write:My name is Mememan.
+Goto:Meme
+Write: (owo)
+Write: (owo) \n(owo)
+Mood:Happy
+Write:This shouldn't show
+Tag:Meme
+Write:There we go!
+--Choice:Good?;Good|Not Good?;Bad
+--Tag:Bad
+--Write:Bad!
+--Tag:Good
+--Write:Good!

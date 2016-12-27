@@ -19,9 +19,9 @@ public class PlayerStunOnCollide : MonoBehaviour {
     {
         thisCollider = GetComponent<BoxCollider2D>();
 
-        playerStun = GameObject.Find("testPlayer").GetComponent<StunController>();
+        playerStun = GameObject.Find("player").GetComponent<StunController>();
 
-        player = GameObject.Find("testPlayer").GetComponent<BoxCollider2D>();
+        player = GameObject.Find("player").GetComponent<BoxCollider2D>();
 
         timer = 0;
 

@@ -5,12 +5,12 @@ public class FollowLeadNPCController : MonoBehaviour {
 
     public Transform followPoint;
     //public float minPlayerDistance;
-    NavMeshAgent navComponent;
+    UnityEngine.AI.NavMeshAgent navComponent;
     GameObject player;
 
 	// Use this for initialization
 	void Start () {
-        navComponent = GetComponent<NavMeshAgent>();
+        navComponent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
 	}
 	

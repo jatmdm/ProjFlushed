@@ -16,8 +16,7 @@ public class NPCFollowController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        player = GameObject.Find("testPlayer");
-
+		player = GameObject.FindWithTag ("Player");
         circle = GetComponent<CircleCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         circle.radius = sightRadius;
@@ -42,7 +41,7 @@ public class NPCFollowController : MonoBehaviour {
     //checks if the player is within the npc's sight
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.name == "testPlayer")
+        if (coll.gameObject.name == "player")
         {
             followingPlayer = true;
         }
@@ -51,7 +50,7 @@ public class NPCFollowController : MonoBehaviour {
     void OnTriggerExit2D(Collider2D coll)
     {
 
-        if (coll.gameObject.name == "testPlayer")
+        if (coll.gameObject.name == "player")
         {
             followingPlayer = false;
             rigidBody.velocity = new Vector2(0, 0);

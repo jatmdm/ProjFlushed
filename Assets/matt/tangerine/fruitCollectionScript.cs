@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class fruitCollectionScript : MonoBehaviour {
-	string fruit;
+	public string fruit;
 	// Use this for initialization
 	void Start () {
 		fruit = "";

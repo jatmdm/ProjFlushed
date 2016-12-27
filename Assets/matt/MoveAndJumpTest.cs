@@ -84,12 +84,11 @@ public class MoveAndJumpTest : MonoBehaviour {
 		rb.velocity -= rb.velocity.normalized * relativeFriction * rb.velocity.magnitude * Time.deltaTime;
 
 		// If the brake key is down, brake!
-		/*if (brake) {
-			Debug.Log ("Break!");
+		if (brake) {
 			rb.velocity -= rb.velocity.normalized * brakePower * rb.velocity.magnitude * Time.deltaTime;
-		}*/
+		}
 
-		/*if (playerStun.isStunned() == true && stunned == false)
+		if (playerStun.isStunned() == true && stunned == false)
 		{
 			rb.velocity = playerStun.StunVector() * stunPower;
 			stunned = true;
@@ -97,7 +96,7 @@ public class MoveAndJumpTest : MonoBehaviour {
 		else if (playerStun.isStunned() == false && stunned == true)
 		{
 			stunned = false;
-		}*/
+		}
 
 		// Rotate object depending upon velocity
 		if (rotate) {
