@@ -18,8 +18,8 @@ public class NPCController : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.name == "testPlayer") {
             Debug.Log("dnlinf");
-            dialogue.testDialogue = true;
-            dialogue.showDialogue = true;
+            //dialogue.testDialogue = true;
+            //dialogue.showDialogue = true;
         }
 
     }

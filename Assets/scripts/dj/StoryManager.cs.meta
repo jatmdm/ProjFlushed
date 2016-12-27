@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: b5e92990796a53e40843117fbb1b3a42
-timeCreated: 1475862568
-=======
-guid: 2b467be4dfe89f14481b69efa896642b
-timeCreated: 1476084255
->>>>>>> GameManager
-licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
