@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 25d9e9958fada46cea8bb94d6a209ba3
 folderAsset: yes
 timeCreated: 1482881802
+=======
+guid: 252df80ff387a45d4b1419957b22c80f
+folderAsset: yes
+timeCreated: 1478103195
+>>>>>>> Sam
 licenseType: Free
 DefaultImporter:
   userData: 
