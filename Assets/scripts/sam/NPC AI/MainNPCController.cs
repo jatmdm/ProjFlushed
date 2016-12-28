@@ -13,28 +13,21 @@ public class MainNPCController : MonoBehaviour {
 
     public bool aiEnabled; // toggle NPC movement
 
-<<<<<<< HEAD
     public Transform followObject;
     public Vector3 followPoint;
     public UnityEngine.AI.NavMeshPath path;
     public bool isFollowingPath;
     public bool isFollowingPoint;
-=======
-    public Transform followObject; // object the NPC will follow
-    public Vector3 followPoint; // point the NPC will follow
-    public bool isFollowingPoint; 
->>>>>>> Sam
+
 
 
 	// Use this for initialization
 	void Start () {
         aiEnabled = true;
-<<<<<<< HEAD
+
         navmesh = GetComponent<UnityEngine.AI.NavMeshAgent>();
         isFollowingPath = false;
-=======
-        navmesh = GetComponent<NavMeshAgent>();
->>>>>>> Sam
+
         isFollowingPoint = false;
 	}
 
