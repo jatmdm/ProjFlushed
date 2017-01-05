@@ -11,7 +11,7 @@ public class NPCPathManager : MonoBehaviour {
     public float minPointDist = 3f;
 
     MainNPCController controller;
-    UnityEngine.AI.NavMeshAgent navmeshagent;
+    NavMeshAgent navmeshagent;
 
     bool moving;
     int curPathPoint;
@@ -37,7 +37,7 @@ public class NPCPathManager : MonoBehaviour {
 
     public void npcSetPath(GameObject npc) {
         MainNPCController cont = npc.GetComponent<MainNPCController>();
-        UnityEngine.AI.NavMeshAgent nav = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        NavMeshAgent nav = npc.GetComponent<NavMeshAgent>();
         navmeshagent = nav;
         controller = cont;
 

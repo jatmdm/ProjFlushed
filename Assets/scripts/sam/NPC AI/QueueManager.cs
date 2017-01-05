@@ -23,7 +23,7 @@ public class QueueManager : MonoBehaviour {
     public void npcEnqueue(GameObject npc) {
         int npcCount = npcQueue.Count;
         MainNPCController npcController = npc.GetComponent<MainNPCController>();
-        UnityEngine.AI.NavMeshAgent npcAgent = npc.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        NavMeshAgent npcAgent = npc.GetComponent<NavMeshAgent>();
 
         npcAgent.stoppingDistance = 0f;
 
@@ -50,7 +50,7 @@ public class QueueManager : MonoBehaviour {
         for(int i = 0; i < npcQueue.Count - 1 ; i++) {
 
             MainNPCController npcController = npcUpNext.Value.GetComponent<MainNPCController>();
-            UnityEngine.AI.NavMeshAgent npcAgent = npcUpNext.Value.GetComponent<UnityEngine.AI.NavMeshAgent>();
+            NavMeshAgent npcAgent = npcUpNext.Value.GetComponent<NavMeshAgent>();
 
             nextPoint = npcController.followPoint;
             npcController.SetNPCDesitnation(prevPoint);
